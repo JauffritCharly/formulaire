@@ -1,0 +1,55 @@
+<h1>Formuaire d'inscription :</h1>
+
+<form #formInscription="ngForm" (ngSubmit)="formInscription.valid && onSubmit()">
+
+    <fieldset>
+        <label for="email">Email :</label>
+        <input name="email" type="email" [(ngModel)]="user.email" #mail="ngModel" required email>
+    </fieldset>
+
+    <!-- message d'errreur pour l'email :  -->
+
+    <div *ngIf="formInscription.submitted">
+        <span *ngIf="mail.errors?.['required']">L'email est requis</span>
+        <span *ngIf="mail.errors?.['email']">L'email est invalide</span>
+    </div>
+
+    <fieldset>
+        <label for="nom">Nom :</label>
+        <input name="nom" type="text" [(ngModel)]="user.nom" #nom="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+
+    <!-- message d'errreur pour le nom :  -->
+
+    <div *ngIf="formInscription.submitted">
+        <span *ngIf="nom.errors?.['required']">Le nom est requis</span>
+        <span *ngIf="nom.errors?.['minlength']">Le nom doit être supérieure à 3 caractères</span>
+        <span *ngIf="nom.errors?.['maxlength']">Le nom doit être inférieur à 15 caractères</span>
+    </div>
+
+    <fieldset>
+        <label for="prenom">Prenom :</label>
+        <input name="prenom" type="text" [(ngModel)]="user.prenom" #prenom="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+
+    <!-- message d'errreur pour le prenom :  -->
+
+    <div *ngIf="formInscription.submitted">
+        <span *ngIf="prenom.errors?.['required']">Le prénom est requis</span>
+        <span *ngIf="prenom.errors?.['minlength']">Le nom doit être supérieure à 3 caractères</span>
+        <span *ngIf="prenom.errors?.['maxlength']">Le nom doit être inférieur à 15 caractères</span>
+    </div>
+
+    <fieldset>
+        <label for="password">Mot de passe :</label>
+        <input name="password" type="password" [(ngModel)]="user.password" #password="ngModel" required minlength="5">
+    </fieldset>
+
+    <div *ngIf="formInscription.submitted">
+        <span *ngIf="password.errors?.['required']">Le mot de passe est requis</span>
+        <span *ngIf="password.errors?.['minlength']">La longueur minimal doit être supérieure à 5 caractères</span>
+    </div>
+
+    <button type="submit">S'inscrire</button>
+
+</form>
